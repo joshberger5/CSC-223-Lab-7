@@ -7,7 +7,8 @@ import utilities.math.*;
  * 
  * Points are ordered lexicographically (thus implementing the Comparable interface)
  * 
- * @author xxx
+ * @author Maherah
+ * @date 03-28-2023
  */
 public class Point implements Comparable<Point>
 {
@@ -80,12 +81,21 @@ public class Point implements Comparable<Point>
 	public static int LexicographicOrdering(Point p1, Point p2)
 	{
 		if(p1.getX() < p2.getX()) return -1;
-		else if(p1.getY() < p2.getY()) return -1;
-		else if(p1.getX() > p2.getX()) return 1;
-		else if(p1.getY() > p2.getY()) return 1;
+		else {
+			if(p1.getX() > p2.getX()) return 1;
+			if(p1.getY() > p2.getY()) return 1;
+			if(p1.getY() < p1.getY()) return -1;
+		}
 		return 0;
 	}
 
+	/**
+	 * Checks to see if one point is equal to, less than, or greater than another point
+	 * 
+	 * @param that Point 2
+	 * @return -1 if Point1 is less than Point 2, 1 if Point1 is greater than Point 2, 0 if Point 1 is equal to Point 2,
+	 * 			1 if Point 1 is being compared to a null value
+	 */
 	@Override
 	public int compareTo(Point that)
 	{
@@ -94,10 +104,16 @@ public class Point implements Comparable<Point>
 		return Point.LexicographicOrdering(this, that);
 	}
 	
+	/**
+	 * Checks to see if two points are equals
+	 * 
+	 * @param object obj
+	 * @return true if equal, false if not equal
+	 */
 	@Override
 	public boolean equals(Object obj) 
 	{
-		if(obj.equals(this)) return true;
+		if(this.compareTo((Point)obj) == 0) return true;
 		return false;
 	}
 }
