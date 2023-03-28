@@ -92,22 +92,87 @@ class PointTest {
 		assertEquals(-1, Point.LexicographicOrdering(testPoint1XLess, testPoint2XGreater));
 		
 		//testing points where p1's y value is greater than p2's y value
+		Point testPoint1YGreater = createPoint2();
+		Point testPoint2YLess = createPoint4();
+		
+		assertEquals(1, Point.LexicographicOrdering(testPoint1YGreater, testPoint2YLess));
 		
 		//testing points where p1's y value is less than p2's y value
+		Point testPoint1YLess = createPoint3();
+		Point testPoint2YGreater = createPoint5();
+		
+		assertEquals(-1, Point.LexicographicOrdering(testPoint1YLess, testPoint2YGreater));
 		
 	}
 
-	//@Test
-	//void testCompareTo() {
-		//fail("Not yet implemented");
-	//}
+	@Test
+	void testCompareTo() {
+		//testing equal points
+		Point testPoint1 = createPoint();
+		Point testPoint2 = createPoint();
+		assertEquals(0, testPoint1.compareTo(testPoint2));
+		
+		//testing points where p1's x value is greater than p2's x value
+		Point testPoint1XGreater = createPoint();
+		Point testPoint2XLess = createPoint3();
+		
+		assertEquals(1, testPoint1XGreater.compareTo(testPoint2XLess));
+		
+		//testing points where p1's x value is less than p2's x value
+		Point testPoint1XLess = createPoint4();
+		Point testPoint2XGreater = createPoint2();
+		
+		assertEquals(-1, testPoint1XLess.compareTo(testPoint2XGreater));
+		
+		//testing points where p1's y value is greater than p2's y value
+		Point testPoint1YGreater = createPoint2();
+		Point testPoint2YLess = createPoint4();
+		
+		assertEquals(1, testPoint1YGreater.compareTo(testPoint2YLess));
+		
+		//testing points where p1's y value is less than p2's y value
+		Point testPoint1YLess = createPoint3();
+		Point testPoint2YGreater = createPoint5();
+		
+		assertEquals(-1, testPoint1YLess.compareTo(testPoint2YGreater));
+		
+		//testing with a null
+		Point testPointCompareWithNull = createPoint();
+		
+		assertEquals(1, testPointCompareWithNull.compareTo(null));
+	}
 
 	@Test
 	void testEqualsObject() {
+		//Testing two equal points
 		Point testPoint1 = createPoint();
 		Point testPoint2 = createPoint();
 		
 		assertTrue(testPoint1.equals(testPoint2));
+		
+		//testing points where p1's y value is less than p2's y value
+		Point testPoint1YLess = createPoint3();
+		Point testPoint2YGreater = createPoint5();
+		
+		assertFalse(testPoint1YLess.equals(testPoint2YGreater));
+		
+		//testing points where p1's y value is greater than p2's y value
+		Point testPoint1YGreater = createPoint2();
+		Point testPoint2YLess = createPoint4();
+		
+		assertFalse(testPoint1YGreater.equals(testPoint2YLess));
+		
+		//testing points where p1's x value is less than p2's x value
+		Point testPoint1XLess = createPoint4();
+		Point testPoint2XGreater = createPoint2();
+		
+		assertFalse(testPoint1XLess.equals(testPoint2XGreater));
+		
+		//testing points where p1's x value is greater than p2's x value
+		Point testPoint1XGreater = createPoint();
+		Point testPoint2XLess = createPoint3();
+		
+		assertFalse(testPoint1XGreater.equals(testPoint2XLess));
 	}
 
 }
