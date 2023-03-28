@@ -1,3 +1,9 @@
+/**
+ * This class tests the Point class and its methods
+ * 
+ * @author Maherah
+ * @date 03-28-2023
+ */
 package geometry_objects.points;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -6,6 +12,10 @@ import org.junit.jupiter.api.Test;
 
 class PointTest {
 
+	/**
+	 * Methods creating points that are called in tests
+	 * @return Points created
+	 */
 	public Point createPoint() {
 		Point point1 = new Point("test point 1", 2.0, 3.0);
 		return point1;
@@ -72,6 +82,9 @@ class PointTest {
 	}
 	*/
 	
+	/**
+	 * Tests the LexicographicOrdering method
+	 */
 	@Test
 	void testLexicographicOrdering() {
 		//testing equal points
@@ -105,6 +118,9 @@ class PointTest {
 		
 	}
 
+	/**
+	 * Tests the compareTo method
+	 */
 	@Test
 	void testCompareTo() {
 		//testing equal points
@@ -142,6 +158,9 @@ class PointTest {
 		assertEquals(1, testPointCompareWithNull.compareTo(null));
 	}
 
+	/**
+	 * Tests the equals method
+	 */
 	@Test
 	void testEqualsObject() {
 		//Testing two equal points
