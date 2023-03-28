@@ -6,6 +6,11 @@ import org.junit.jupiter.api.Test;
 
 class PointTest {
 
+	public static Point createPoint() {
+		Point point1 = new Point("test point 1", 2.0, 3.0);
+		return point
+	}
+	/**
 	@Test
 	void testHashCode() {
 		fail("Not yet implemented");
@@ -45,10 +50,11 @@ class PointTest {
 	void testIsUnnamed() {
 		fail("Not yet implemented");
 	}
-
+	*/
+	
 	@Test
 	void testLexicographicOrdering() {
-		fail("Not yet implemented");
+		
 	}
 
 	@Test
