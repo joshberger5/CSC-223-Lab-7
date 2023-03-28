@@ -13,9 +13,7 @@ import input.builder.GeometryBuilder;
 import input.components.ComponentNode;
 import input.components.FigureNode;
 import input.components.point.PointNode;
-import input.components.point.PointNodeDatabase;
 import input.components.segment.SegmentNode;
-import input.components.segment.SegmentNodeDatabase;
 import input.parser.JSONParser;
 
 public class InputFacade {
