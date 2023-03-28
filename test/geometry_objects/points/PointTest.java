@@ -74,10 +74,26 @@ class PointTest {
 	
 	@Test
 	void testLexicographicOrdering() {
+		//testing equal points
 		Point testPoint1 = createPoint();
 		Point testPoint2 = createPoint();
-		
 		assertEquals(0, Point.LexicographicOrdering(testPoint1, testPoint2));
+		
+		//testing points where p1's x value is greater than p2's x value
+		Point testPoint1XGreater = createPoint();
+		Point testPoint2XLess = createPoint3();
+		
+		assertEquals(1, Point.LexicographicOrdering(testPoint1XGreater, testPoint2XLess));
+		
+		//testing points where p1's x value is less than p2's x value
+		Point testPoint1XLess = createPoint4();
+		Point testPoint2XGreater = createPoint2();
+		
+		assertEquals(-1, Point.LexicographicOrdering(testPoint1XLess, testPoint2XGreater));
+		
+		//testing points where p1's y value is greater than p2's y value
+		
+		//testing points where p1's y value is less than p2's y value
 		
 	}
 
