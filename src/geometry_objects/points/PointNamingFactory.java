@@ -1,5 +1,6 @@
 package geometry_objects.points;
 
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -38,7 +39,7 @@ public class PointNamingFactory
 
 	public PointNamingFactory()
 	{
-		// TODO
+		_database = new HashMap<Point, Point>();
 	}
 
 	/**
@@ -48,7 +49,9 @@ public class PointNamingFactory
 	 */
 	public PointNamingFactory(List<Point> points)
 	{
-		// TODO
+		for (Point p : points) {
+			put(p);
+		}
 	}
 
 	/**
@@ -62,7 +65,20 @@ public class PointNamingFactory
 	 */
 	public Point put(Point pt)
 	{
-		// TODO
+		// check if the point is in the database
+		Point p = get(pt);
+				
+		// if so, return it
+		if (p != null) return p;
+				
+		// if not, make sure the point has a name
+		if (pt._name == null || pt._name.equals("__UNNAMED")) pt._name = getCurrentName();
+				
+		// add it to the database
+		_database.put(pt, pt);
+				
+		// and return it
+		return pt;
 	}
 
 	/**
@@ -77,7 +93,22 @@ public class PointNamingFactory
 	 */
 	public Point put(double x, double y)
 	{
-		// TODO
+		// check if the point is in the database
+		Point p = get(x, y);
+		
+		// if so, return it
+		if (p != null) return p;
+		
+		// if not, make a new point
+		// with the given coordinates
+		// and a constructed name
+		p = new Point(getCurrentName(), x, y);
+		
+		// add the point to the database
+		_database.put(p, p);
+		
+		// and return it
+		return p;
 	}
 
 	/**
@@ -100,7 +131,23 @@ public class PointNamingFactory
 	 */
 	public Point put(String name, double x, double y)
 	{
-		// TODO
+		// check if the point is in the database
+		Point p = get(x, y);
+		
+		// if so, return it
+		if (p != null) return p;
+		
+		// if not, make sure the name is valid
+		if (name == null) name = getCurrentName();
+	
+		// then, create a new point with a valid or constructed name
+		p = new Point(name, x, y);
+		
+		// add the point to the database
+		_database.put(p, p);
+		
+		// and return it
+		return p;
 	}    
 
 	/**
@@ -112,11 +159,14 @@ public class PointNamingFactory
 	 */
 	public Point get(double x, double y)
 	{
-		// TODO
+		for (Point p : _database.keySet()) {
+			if (p._x == x && p._y == y) return p;
+		}
+		return null;
 	}	
 	public Point get(Point pt)
 	{
-		// TODO
+		return get(pt._x, pt._y);
 	}
 
 	/**
@@ -124,8 +174,12 @@ public class PointNamingFactory
 	 * @param y -- single coordinate
 	 * @return simple containment; no updating
 	 */
-	public boolean contains(double x, double y) { /* TODO */ }
-	public boolean contains(Point p) { /* TODO */ }
+	public boolean contains(double x, double y) { 
+		return get(x, y) != null;
+	}
+	public boolean contains(Point p) { 
+		return get(p._x, p._y) != null;
+	}
 
 	/**
 	 * Constructs the next (complete with prefix) generated name.
@@ -138,7 +192,9 @@ public class PointNamingFactory
 	 */
 	private String getCurrentName()
 	{
-        // TODO
+		String name = _PREFIX + _currentName;
+		updateName();
+        return name;
 	}
 
 	/**
@@ -147,7 +203,13 @@ public class PointNamingFactory
 	 */
 	private void updateName()
 	{
-        // TODO
+        if (_currentName.charAt(_numLetters-1) == END_LETTER) {
+        	_currentName = _currentName + START_LETTER;
+        	_numLetters++;
+        }
+        else {
+        	_currentName.charAt(_numLetters-1) = _currentName.charAt(_numLetters) + 1;
+        }
 	}
 
 	/**
