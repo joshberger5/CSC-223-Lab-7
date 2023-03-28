@@ -97,7 +97,7 @@ public class Point implements Comparable<Point>
 	@Override
 	public boolean equals(Object obj) 
 	{
-		if(obj.equals(this)) return true;
+		if(this.compareTo((Point)obj) == 0) return true;
 		return false;
 	}
 }
