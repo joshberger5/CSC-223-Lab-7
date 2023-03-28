@@ -39,49 +39,7 @@ class PointTest {
 		Point point5 = new Point("test point 5", 8.1, 9.5);
 		return point5;
 	}
-	
-	/**
-	@Test
-	void testHashCode() {
-		fail("Not yet implemented");
-	}
 
-	@Test
-	void testGetX() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testGetY() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testGetName() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testIsGenerated() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testPointDoubleDouble() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testPointStringDoubleDouble() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testIsUnnamed() {
-		fail("Not yet implemented");
-	}
-	*/
-	
 	/**
 	 * Tests the LexicographicOrdering method
 	 */
