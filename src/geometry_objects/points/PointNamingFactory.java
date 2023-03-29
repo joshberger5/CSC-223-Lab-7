@@ -1,6 +1,7 @@
 package geometry_objects.points;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -203,12 +204,27 @@ public class PointNamingFactory
 	 */
 	private void updateName()
 	{
-        if (_currentName.charAt(_numLetters-1) == END_LETTER) {
-        	_currentName = _currentName + START_LETTER;
+		// if the current generated name includes the END_LETTER (Z),
+		// then change it to the START_LETTER (A),
+		// which should repeat as many times as there currently are letters, plus 1
+		// for example, it changes Z to AA, ZZ to AAA, ZZZ to AAAA
+        if (_currentName.charAt(0) == END_LETTER) {
         	_numLetters++;
+        	_currentName = "";
+        	for (int i = 0; i < _numLetters; i++) {
+        		_currentName += START_LETTER;
+        	}
         }
+        // if the current generated name doesn't include Z
+        // change it to the next letter in the alphabet
+        // repeating as many times as there currently are letters
+        // for example, it changes A to B, CC to DD, LLL to MMM
         else {
-        	_currentName.charAt(_numLetters-1) = _currentName.charAt(_numLetters) + 1;
+        	char updatedChar = (char) (_currentName.charAt(0) + 1);
+        	_currentName = "";
+        	for (int i = 0; i < _numLetters; i++) {
+        		_currentName += updatedChar;
+        	}
         }
 	}
 
@@ -217,7 +233,11 @@ public class PointNamingFactory
 	 */
 	public  Set<Point> getAllPoints()
 	{
-        // TODO
+		Set<Point> points = new HashSet();
+        for (Point p : _database.keySet()) {
+        	points.add(p);
+        }
+        return points;
 	}
 
 	public void clear() { _database.clear(); }
@@ -226,6 +246,10 @@ public class PointNamingFactory
 	@Override
 	public String toString()
 	{
-        // TODO
+		String s = "";
+        for (Point p : _database.keySet()) {
+        	s += p.getName() + " ";
+        }
+        return s;
 	}
 }
