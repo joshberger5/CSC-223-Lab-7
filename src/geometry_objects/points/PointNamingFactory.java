@@ -50,6 +50,8 @@ public class PointNamingFactory
 	 */
 	public PointNamingFactory(List<Point> points)
 	{
+		_database = new HashMap<Point, Point>();
+		if (points == null) return;
 		for (Point p : points) {
 			put(p);
 		}
@@ -66,6 +68,8 @@ public class PointNamingFactory
 	 */
 	public Point put(Point pt)
 	{
+		if (pt == null) return null;
+		
 		// check if the point is in the database
 		Point p = get(pt);
 				
@@ -178,7 +182,8 @@ public class PointNamingFactory
 	public boolean contains(double x, double y) { 
 		return get(x, y) != null;
 	}
-	public boolean contains(Point p) { 
+	public boolean contains(Point p) {
+		if (p == null) return false;
 		return get(p._x, p._y) != null;
 	}
 

@@ -33,6 +33,7 @@ public class PointDatabase
 
 	public PointDatabase(List<Point> points)
 	{
+		if (points == null) _factory = new PointNamingFactory();
         _factory = new PointNamingFactory(points);
 	}
 
@@ -60,8 +61,17 @@ public class PointDatabase
 	}
 	public String getName(Point pt)
 	{
+		// if the passed-in Point is null, return null
+		if (pt == null) return null;
+		
+		// check if the Point is in the database
         Point p = _factory.get(pt);
+        
+        // if not, return null
         if (p == null) return null;
+        
+        // otherwise, return the name of the Point
+        // that is in the database
         return p._name;
 	}
 
