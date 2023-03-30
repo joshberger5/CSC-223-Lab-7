@@ -35,6 +35,7 @@ class PointDatabaseTest {
 
 	@Test
 	void testPointDatabase() {
+		// checks that the default constructor makes an empty PointDatabase
 		PointDatabase d = new PointDatabase();
 		assertEquals(0, d.size());
 	}
@@ -51,24 +52,29 @@ class PointDatabaseTest {
 		// construct a PointDatabase passing in the list
 		PointDatabase d = new PointDatabase(points);
 		
+		// checks that the PointDatabase was constructed with 10 Points
 		assertEquals(10, d.size());
 	}
 
 	@Test
-	void testSizeofFullDB() {
-		PointDatabase d = initDB();
+	void testSize() {
+		// checks that the size increases from 0
+		PointDatabase d = new PointDatabase();
+		assertEquals(0, d.size());
 		
+		// to 10 after putting 10 points in the PointDatabase
+		d = initDB();
 		assertEquals(10, d.size());
 	}
 
 	@Test
 	void testPutWithNullName() {
+		// checks that put works when the passed-in name is null
 		PointDatabase d = new PointDatabase();
 		
 		d.put(null, 0, 0);
 		
 		assertEquals(1, d.size());
-		assertEquals()
 	}
 	
 	@Test
