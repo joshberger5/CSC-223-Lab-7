@@ -10,6 +10,9 @@ import geometry_objects.points.PointDatabase;
 
 class PointDatabaseTest {
 	
+	/**
+	 * @return a PointDatabase with 10 Points
+	 */
 	private PointDatabase initDB() {
 		PointDatabase d = new PointDatabase();
 		
@@ -17,6 +20,8 @@ class PointDatabaseTest {
 			// puts 10 Points in the PointDatabase
 			// each one's name is a letter
 			// starting at A and going to J
+			// and x coordinates from -8 to 11
+			// and y coordinates from -5 to 22
 			d.put("" + ((char) (65+i)), 2*i-8, 3*i-5);
 		}
 		
@@ -61,6 +66,16 @@ class PointDatabaseTest {
 		PointDatabase d = new PointDatabase();
 		
 		d.put(null, 0, 0);
+		
+		assertEquals(1, d.size());
+		assertEquals()
+	}
+	
+	@Test
+	void testPutWithNonNullName() {
+		PointDatabase d = new PointDatabase();
+		
+		d.put("Hello", 1, 2);
 		
 		assertEquals(1, d.size());
 	}
