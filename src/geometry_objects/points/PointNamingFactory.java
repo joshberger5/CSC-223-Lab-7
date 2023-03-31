@@ -58,7 +58,7 @@ public class PointNamingFactory
 	}
 
 	/**
-	 * Main overloaded add / lookup mechanism for this database.
+	 * Overloaded add / lookup mechanism for this database.
 	 *
 	 * @param pt -- a Point object (may or may not be named)
 	 
@@ -68,23 +68,10 @@ public class PointNamingFactory
 	 */
 	public Point put(Point pt)
 	{
+		// delegates the main put method after checking for null input
 		if (pt == null) return null;
 		
-		// check if the point is in the database
-		Point p = get(pt);
-				
-		// if so, return it
-		if (p != null) return p;
-				
-		// if not, make sure the point has a valid name
-		// and if it doesn't give it a constructed name
-		if (pt._name == null || pt._name.equals("__UNNAMED")) pt._name = getCurrentName();
-				
-		// add it to the database
-		_database.put(pt, pt);
-				
-		// and return it
-		return pt;
+		return put(pt.getName(), pt.getX(), pt.getY());
 	}
 
 	/**
@@ -99,17 +86,12 @@ public class PointNamingFactory
 	 */
 	public Point put(double x, double y)
 	{
-		// make a Point
-		// with the given coordinates
-		// and a constructed name
-		Point p = new Point(getCurrentName(), x, y);
-
-		// delegate the put method that takes in a Point 
-		return put(p);
+		// delegate the main put method 
+		return put(null, x, y);
 	}
 
 	/**
-	 * Overloaded add / lookup mechanism for a named coordinate pair.
+	 * Main overloaded add / lookup mechanism for a named coordinate pair.
 	 * 
 	 * @param name -- the name of the point 
 	 * @param x -- single coordinate
@@ -133,8 +115,21 @@ public class PointNamingFactory
 		// and the given name
 		Point p = new Point(name, x, y);
 		
-		// delegate the put method that takes in a Point
-		return put(p);
+		// check if the point is in the database
+		Point g = get(p);
+						
+		// if so, return it
+		if (g != null) return g;
+						
+		// if not, make sure the point has a valid name
+		// and if it doesn't give it a constructed name
+		if (p._name == null || p._name.equals("__UNNAMED")) p._name = getCurrentName();
+						
+		// add it to the database
+		_database.put(p, p);
+						
+		// and return it
+		return p;
 	}    
 
 	/**
@@ -146,6 +141,10 @@ public class PointNamingFactory
 	 */
 	public Point get(double x, double y)
 	{
+		// checks if the passed in coordinates
+		// match a Point in the factory
+		// and if so, return it
+		// if not, return null
 		for (Point p : _database.keySet()) {
 			if (p._x >= x - 0.05 &&
 				p._x <= x + 0.05 &&
@@ -157,6 +156,9 @@ public class PointNamingFactory
 	}	
 	public Point get(Point pt)
 	{
+		// checks if the passed in point is null
+		// and if not, delegates the main get method
+		if (pt == null) return null;
 		return get(pt._x, pt._y);
 	}
 

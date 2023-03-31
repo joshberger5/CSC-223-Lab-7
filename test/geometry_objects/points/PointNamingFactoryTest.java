@@ -62,62 +62,199 @@ class PointNamingFactoryTest {
 		// and the size of the factory increases by 1
 		PointNamingFactory f = new PointNamingFactory();
 		
-		Point r = f.put(new Point(null, 1, 1));
+		Point r = f.put(new Point(null, -7.02834, -9.01289));
 		
 		assertEquals("*_A", r.getName());
-		assertEquals(1, r.getX());
-		assertEquals(1, r.getY());
+		assertEquals(-7.02834, r.getX());
+		assertEquals(-9.01289, r.getY());
 		assertEquals(1, f.size());
 	}
 
 	@Test
 	void testPutDoubleDouble() {
-		// fail("Not yet implemented");
+		// checks that put(double x, double y) returns a Point
+		// with a constructed name
+		// and the factory size increases by 1
+		PointNamingFactory f = new PointNamingFactory();
+		
+		Point r = f.put(0.91223, 2.3208);
+		
+		assertEquals("*_A", r.getName());
+		assertEquals(0.91223, r.getX());
+		assertEquals(2.3208, r.getY());
+		assertEquals(1, f.size());
 	}
 
 	@Test
-	void testPutStringDoubleDouble() {
-		// fail("Not yet implemented");
+	void testPutStringDoubleDoubleNullName() {
+		// checks that put(String name, double x, double y)
+		// returns a Point with a constructed name
+		// when null is passed for the name
+		// and the factory size increases by 1
+		PointNamingFactory f = new PointNamingFactory();
+		
+		Point r = f.put(null, 5.281903, 1.18723);
+		
+		assertEquals("*_A", r.getName());
+		assertEquals(5.281903, r.getX());
+		assertEquals(1.18723, r.getY());
+		assertEquals(1, f.size());
+	}
+	
+	@Test
+	void testPutStringDoubleDoubleNonNullName() {
+		// checks that put(String name, double x, double y)
+		// returns a Point with the passed in name
+		// and the factory size increases by 1
+		PointNamingFactory f = new PointNamingFactory();
+		
+		Point r = f.put("ASDF", 6.230498, 3.180239);
+		
+		assertEquals("ASDF", r.getName());
+		assertEquals(6.230498, r.getX());
+		assertEquals(3.180239, r.getY());
+		assertEquals(1, f.size());
 	}
 
 	@Test
-	void testGetDoubleDouble() {
-		// fail("Not yet implemented");
+	void testGetDoubleDoubleInDB() {
+		// checks that you are returned
+		// the correct point
+		// when you call get with the coordinates
+		// of a Point in the Factory
+		PointNamingFactory f = new PointNamingFactory();
+		
+		Point r = f.put("QWERTY", 0.7234, 8.90123); 
+		Point g = f.get(0.7, 8.9);
+		
+		assertEquals("QWERTY", g.getName());
+		assertEquals(0.7234, g.getX());
+		assertEquals(8.90123, g.getY());
+	}
+	
+	@Test
+	void testGetDoubleDoubleNotInDB() {
+		// checks that you are returned null
+		// when you call get with the coordinates
+		// of a Point not in the Factory
+		PointNamingFactory f = new PointNamingFactory();
+		
+		assertNull(f.get(0.7, 8.9));
 	}
 
 	@Test
-	void testGetPoint() {
-		// fail("Not yet implemented");
+	void testGetPointNull() {
+		// checks that you are returned null
+		// when you call get with null
+		PointNamingFactory f = new PointNamingFactory();
+		
+		assertNull(f.get(null));
+	}
+	
+	@Test
+	void testGetPointInDB() {
+		// checks that you are returned the correct Point
+		// when you call get with a Point in the factory
+		PointNamingFactory f = new PointNamingFactory();
+		
+		Point p = f.put("fruit salad", 1.7234, 6.987123); 
+		Point g = f.get(p);
+		
+		assertEquals("fruit salad", g.getName());
+		assertEquals(1.7234, g.getX());
+		assertEquals(6.987123, g.getY());
+	}
+	
+	@Test
+	void testGetPointInNotInDB() {
+		// checks that you are returned null
+		// when you call get with a Point not in the factory
+		PointNamingFactory f = new PointNamingFactory();
+		
+		Point p = new Point("fruit salad", 1.7234, 6.987123); 
+		
+		assertNull(f.get(p));
 	}
 
 	@Test
-	void testContainsDoubleDouble() {
-		// fail("Not yet implemented");
+	void testContainsDoubleDoubleTrue() {
+		// checks that you are returned true
+		// when you call contains with the coordinates
+		// of a Point in the Factory
+		PointNamingFactory f = new PointNamingFactory();
+		
+		Point r = f.put("FUOC", 0.726997987, 8.799764); 
+		
+		assertTrue(f.contains(0.7, 8.8));
+	}
+	
+	@Test
+	void testContainsDoubleDoubleFalse() {
+		// checks that you are returned false
+		// when you call contains with the coordinates
+		// not of a Point in the Factory
+		PointNamingFactory f = new PointNamingFactory();
+		
+		
+		assertFalse(f.contains(0.7, 8.8));
 	}
 
 	@Test
-	void testContainsPoint() {
-		// fail("Not yet implemented");
+	void testContainsPointNull() {
+		// checks that you are returned false
+		// when you call contains with null
+		PointNamingFactory f = new PointNamingFactory();
+				
+		assertFalse(f.contains(null));
+	}
+	
+	@Test
+	void testContainsPointInDB() {
+		// checks that you are returned true
+		// when you call contains with a Point in the factory
+		PointNamingFactory f = new PointNamingFactory();
+		
+		Point p = f.put("fruit salad", 1.7234, 6.987123); 
+
+		assertTrue(f.contains(p));
+	}
+	
+	@Test
+	void testContainsPointInNotInDB() {
+		// checks that you are returned false
+		// when you call contains with a Point not in the factory
+		PointNamingFactory f = new PointNamingFactory();
+		
+		Point p = new Point("fruit salad", 1.7234, 6.987123); 
+		
+		assertFalse(f.contains(p));
 	}
 
 	@Test
 	void testGetAllPoints() {
-		// fail("Not yet implemented");
+		// checks that getAllPoints() returns a set
+		// that is the same size as the factory
+		PointNamingFactory f = new PointNamingFactory();
+		
+		for (int i = 0; i < 10; i++) {
+			f.put(i, i);
+		}
+		
+		assertEquals(10, f.getAllPoints().size());
 	}
 
 	@Test
 	void testClear() {
-		// fail("Not yet implemented");
+		// checks that the factory is empty
+		// after calling clear()
+		PointNamingFactory f = new PointNamingFactory();
+		
+		for (int i = 0; i < 10; i++) {
+			f.put(i, i);
+		}
+		
+		f.clear();
+		
+		assertEquals(0, f.size());
 	}
-
-	@Test
-	void testSize() {
-		// fail("Not yet implemented");
-	}
-
-	@Test
-	void testToString() {
-		// fail("Not yet implemented");
-	}
-
 }
