@@ -83,6 +83,7 @@ public class PointDatabase
 	 */
 	public Point getPoint(String name)
 	{
+		if (name == null) return null;
         for (Point p : _factory.getAllPoints()) {
         	if (p._name.equals(name)) {
         		return p;
@@ -100,6 +101,7 @@ public class PointDatabase
 	 */
 	public Point getPoint(Point pt)
 	{
+		if (pt == null) return null;
         return _factory.get(pt);
 	}
 
