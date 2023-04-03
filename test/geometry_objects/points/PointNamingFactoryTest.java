@@ -124,7 +124,7 @@ class PointNamingFactoryTest {
 		// of a Point in the Factory
 		PointNamingFactory f = new PointNamingFactory();
 		
-		Point r = f.put("QWERTY", 0.7234, 8.90123); 
+		//Point r = f.put("QWERTY", 0.7234, 8.90123); 
 		Point g = f.get(0.7, 8.9);
 		
 		assertEquals("QWERTY", g.getName());
@@ -183,6 +183,8 @@ class PointNamingFactoryTest {
 		// of a Point in the Factory
 		PointNamingFactory f = new PointNamingFactory();
 		
+		
+		//NEED TO FIX EPSILON IMPLEMENTATION
 		Point r = f.put("FUOC", 0.726997987, 8.799764); 
 		
 		assertTrue(f.contains(0.7, 8.8));

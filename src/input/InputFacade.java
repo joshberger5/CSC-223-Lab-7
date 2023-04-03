@@ -53,14 +53,15 @@ public class InputFacade {
         for (PointNode pointNode : fig.getPointsDatabase().getAllPoints()) {
             pointDB.put(pointNode.getName(), pointNode.getX(), pointNode.getY());
         }
-
+        
+        //Separate into methods for helper
         for (SegmentNode segmentNode : fig.getSegments().asUniqueSegmentList()) {
             Point start = pointDB.getPoint(segmentNode.getPoint1().getName());
             Point end = pointDB.getPoint(segmentNode.getPoint2().getName());
             Segment segment = new Segment(start, end);
             segments.add(segment);
         }
-
+        //could be one line
         return new AbstractMap.SimpleEntry<>(pointDB, segments);
     }
 }
