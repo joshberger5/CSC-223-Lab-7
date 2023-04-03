@@ -68,7 +68,7 @@ public class Point implements Comparable<Point>
 	public int hashCode()
 	{
 		return Double.valueOf(MathUtilities.removeLessEpsilon(_x)).hashCode() +
-			   Double.valueOf(MathUtilities.removeLessEpsilon(_y)).hashCode();
+				Double.valueOf(MathUtilities.removeLessEpsilon(_y)).hashCode();
 	}
 
 	/**
@@ -81,11 +81,9 @@ public class Point implements Comparable<Point>
 	public static int LexicographicOrdering(Point p1, Point p2)
 	{
 		if(p1.getX() < p2.getX()) return -1;
-		else {
-			if(p1.getX() > p2.getX()) return 1;
-			if(p1.getY() > p2.getY()) return 1;
-			if(p1.getY() < p1.getY()) return -1;
-		}
+		if(p1.getX() > p2.getX()) return 1;
+		if(p1.getY() > p2.getY()) return 1;
+		if(p1.getY() < p1.getY()) return -1;
 		return 0;
 	}
 
@@ -103,8 +101,9 @@ public class Point implements Comparable<Point>
 
 		return Point.LexicographicOrdering(this, that);
 	}
-	
+
 	/**
+	 * Does not work in this current implementation - need to check if it is a point, instanceof, etc, check for null
 	 * Checks to see if two points are equals
 	 * 
 	 * @param object obj

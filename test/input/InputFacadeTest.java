@@ -18,6 +18,7 @@ public class InputFacadeTest {
      * Provides a list of test JSON file names
      *
      * @return a list of file names in the testFiles folder
+     * Test more files if you have them
      */
     public static Object[][] provideInputFileNames() {
         return new Object[][] {

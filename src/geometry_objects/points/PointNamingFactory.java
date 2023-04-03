@@ -125,7 +125,7 @@ public class PointNamingFactory
 						
 		// if not, make sure the point has a valid name
 		// and if it doesn't give it a constructed name
-		if (p._name == null || p._name.equals("__UNNAMED")) p._name = getCurrentName();
+		if (p._name == null || p._name.equals(Point.ANONYMOUS)) p._name = getCurrentName();
 						
 		// add it to the database
 		_database.put(p, p);
@@ -147,6 +147,7 @@ public class PointNamingFactory
 		// match a Point in the factory
 		// and if so, return it
 		// if not, return null
+		// use methods from point 
 		for (Point p : _database.keySet()) {
 			if (MathUtilities.doubleEquals(x, p.getX()) && MathUtilities.doubleEquals(y, p.getY()))
 				return p;
@@ -225,6 +226,7 @@ public class PointNamingFactory
 	 */
 	public  Set<Point> getAllPoints()
 	{
+		// generic, use <E>, don't ignore warning
 		Set<Point> points = new HashSet();
         for (Point p : _database.keySet()) {
         	points.add(p);

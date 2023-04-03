@@ -183,6 +183,8 @@ class PointNamingFactoryTest {
 		// of a Point in the Factory
 		PointNamingFactory f = new PointNamingFactory();
 		
+		
+		//NEED TO FIX EPSILON IMPLEMENTATION
 		Point r = f.put("FUOC", 0.726997987, 8.799764); 
 		
 		assertTrue(f.contains(0.726997987, 8.799764));

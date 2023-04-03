@@ -59,6 +59,8 @@ public class PointDatabase
         if (p == null) return null;
         return p._name;
 	}
+	
+	//redundant, call previous getName
 	public String getName(Point pt)
 	{
 		// if the passed-in Point is null, return null
