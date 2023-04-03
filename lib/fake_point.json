@@ -1,0 +1,19 @@
+{
+  "Figure" :
+  {
+    "Description" : "Point leading to a Fake Point",
+    "Points" :
+      [
+        {
+          "name" : "A",
+          "x" : 1,
+          "y" : 0
+        }
+      ],
+      
+    "Segments" :
+      [
+        {"A" : ["B"] },
+      ]
+  }
+}
