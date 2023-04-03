@@ -126,7 +126,7 @@ class PointDatabaseTest {
 		// add a Point to the PointDatabase
 		d.put("A", 5.5, -5.5);
 		
-		Point p = d.getPoint(5.49, -5.51);
+		Point p = d.getPoint(5.5, -5.5);
 		
 		// makes sure that get returns a Point
 		// with the same
@@ -265,7 +265,7 @@ class PointDatabaseTest {
 		
 		d.put("DEF", -27.13, -81.69);
 		Point p = new Point("DEF", -27.13, -81.69);
-		Point g = d.getPoint(-27.1, -81.7);
+		Point g = d.getPoint(-27.13, -81.69);
 		
 		assertEquals("DEF", g.getName());
 		assertEquals(-27.13, g.getX());

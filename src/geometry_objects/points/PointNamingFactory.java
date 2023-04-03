@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import utilities.math.MathUtilities;
+
 /*
  * Given a pair of coordinates; generate a unique name for it;
  * return that point object.
@@ -146,10 +148,7 @@ public class PointNamingFactory
 		// and if so, return it
 		// if not, return null
 		for (Point p : _database.keySet()) {
-			if (p._x >= x - 0.05 &&
-				p._x <= x + 0.05 &&
-				p._y >= y - 0.05 &&
-				p._y <= y + 0.05)
+			if (MathUtilities.doubleEquals(x, p.getX()) && MathUtilities.doubleEquals(y, p.getY()))
 				return p;
 		}
 		return null;
